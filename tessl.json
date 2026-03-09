@@ -1,0 +1,15 @@
+{
+  "name": "my-project",
+  "mode": "vendored",
+  "dependencies": {
+    "github/awesome-copilot": {
+      "version": "c41cc5cb38369a4436e9f860a0b32857dc5355c4",
+      "source": "https://github.com/github/awesome-copilot",
+      "include": {
+        "skills": [
+          "web-design-reviewer"
+        ]
+      }
+    }
+  }
+}

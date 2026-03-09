@@ -1,0 +1,2 @@
+-- Seed is intentionally minimal for clean-start environments.
+-- Add non-production fixtures here if needed.
