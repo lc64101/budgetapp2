@@ -141,16 +141,29 @@ alter table public.sharing_preferences enable row level security;
 alter table public.friend_requests enable row level security;
 alter table public.friends enable row level security;
 
-create policy if not exists profiles_self_read on public.profiles for select using (auth.uid() = id);
-create policy if not exists profiles_self_update on public.profiles for update using (auth.uid() = id);
-create policy if not exists profiles_self_insert on public.profiles for insert with check (auth.uid() = id);
+drop policy if exists profiles_self_read on public.profiles;
+create policy profiles_self_read on public.profiles for select using (auth.uid() = id);
 
-create policy if not exists app_settings_owner_all on public.app_settings for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
-create policy if not exists budget_periods_owner_all on public.budget_periods for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
-create policy if not exists expenses_owner_all on public.expenses for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
-create policy if not exists sharing_prefs_owner_all on public.sharing_preferences for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+drop policy if exists profiles_self_update on public.profiles;
+create policy profiles_self_update on public.profiles for update using (auth.uid() = id);
 
-create policy if not exists historical_metrics_owner_or_shared on public.historical_metrics
+drop policy if exists profiles_self_insert on public.profiles;
+create policy profiles_self_insert on public.profiles for insert with check (auth.uid() = id);
+
+drop policy if exists app_settings_owner_all on public.app_settings;
+create policy app_settings_owner_all on public.app_settings for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+drop policy if exists budget_periods_owner_all on public.budget_periods;
+create policy budget_periods_owner_all on public.budget_periods for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+drop policy if exists expenses_owner_all on public.expenses;
+create policy expenses_owner_all on public.expenses for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+drop policy if exists sharing_prefs_owner_all on public.sharing_preferences;
+create policy sharing_prefs_owner_all on public.sharing_preferences for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+drop policy if exists historical_metrics_owner_or_shared on public.historical_metrics;
+create policy historical_metrics_owner_or_shared on public.historical_metrics
 for select
 using (
   auth.uid() = user_id
@@ -161,21 +174,29 @@ using (
   )
 );
 
-create policy if not exists friend_requests_recipient_or_sender_read on public.friend_requests
+drop policy if exists friend_requests_recipient_or_sender_read on public.friend_requests;
+create policy friend_requests_recipient_or_sender_read on public.friend_requests
 for select
 using (auth.uid() = to_user_id or auth.uid() = from_user_id);
 
-create policy if not exists friend_requests_sender_insert on public.friend_requests
+drop policy if exists friend_requests_sender_insert on public.friend_requests;
+create policy friend_requests_sender_insert on public.friend_requests
 for insert
 with check (auth.uid() = from_user_id);
 
-create policy if not exists friend_requests_recipient_delete on public.friend_requests
+drop policy if exists friend_requests_recipient_delete on public.friend_requests;
+create policy friend_requests_recipient_delete on public.friend_requests
 for delete
 using (auth.uid() = to_user_id or auth.uid() = from_user_id);
 
-create policy if not exists friends_owner_read on public.friends for select using (auth.uid() = user_id);
-create policy if not exists friends_owner_insert on public.friends for insert with check (auth.uid() = user_id);
-create policy if not exists friends_owner_delete on public.friends for delete using (auth.uid() = user_id);
+drop policy if exists friends_owner_read on public.friends;
+create policy friends_owner_read on public.friends for select using (auth.uid() = user_id);
+
+drop policy if exists friends_owner_insert on public.friends;
+create policy friends_owner_insert on public.friends for insert with check (auth.uid() = user_id);
+
+drop policy if exists friends_owner_delete on public.friends;
+create policy friends_owner_delete on public.friends for delete using (auth.uid() = user_id);
 
 create or replace function public.rpc_update_app_settings(
   p_dark_mode boolean,

@@ -1,5 +1,5 @@
 import { DashboardHome } from "@/features/dashboard/DashboardHome";
 
-export default function Home() {
+export default function DashboardPage() {
   return <DashboardHome />;
 }

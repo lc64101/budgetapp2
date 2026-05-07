@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
+import { GlobalErrorProvider } from "@/features/shared/errors/GlobalErrorProvider";
 
 export function Providers({ children }: { children: ReactNode }) {
   const [queryClient] = useState(
@@ -9,13 +10,18 @@ export function Providers({ children }: { children: ReactNode }) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            retry: 1,
-            staleTime: 15_000,
-            refetchOnWindowFocus: true,
+            retry: 0,
+            staleTime: 60_000,
+            refetchOnWindowFocus: false,
+            refetchOnReconnect: true,
           },
         },
       }),
   );
 
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <GlobalErrorProvider>{children}</GlobalErrorProvider>
+    </QueryClientProvider>
+  );
 }

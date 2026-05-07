@@ -1,9 +1,9 @@
 ---
-name: tessl__web-design-reviewer
+name: "web-design-reviewer"
 description: 'This skill enables visual inspection of websites running locally or remotely to identify and fix design issues. Triggers on requests like "review website design", "check the UI", "fix the layout", "find design problems". Detects issues with responsive design, accessibility, visual consistency, and layout breakage, then performs fixes at the source code level.'
 ---
 
-# Web Design Reviewer
+# tessl__web-design-reviewer
 
 This skill enables visual inspection and validation of website design quality, identifying and fixing issues at the source code level.
 
@@ -189,7 +189,7 @@ Identify source files from problematic elements:
 
 #### Framework-specific Fix Guidelines
 
-See [references/framework-fixes.md](references/framework-fixes.md) for details.
+See the framework fixes reference document in the local references folder for details.
 
 #### Fix Principles
 

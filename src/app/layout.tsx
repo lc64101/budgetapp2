@@ -1,7 +1,19 @@
 import type { Metadata } from "next";
+import { Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { AppShell } from "@/design-system/AppShell";
 import { Providers } from "./providers";
+
+const bodyFont = Manrope({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const displayFont = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Budget App 2",
@@ -11,10 +23,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>
-        <Providers>
-          <AppShell>{children}</AppShell>
-        </Providers>
+      <body className={`${bodyFont.variable} ${displayFont.variable}`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

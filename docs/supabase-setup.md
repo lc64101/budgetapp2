@@ -8,6 +8,11 @@
 ## Migrations
 - Core schema, RLS, and RPCs: `supabase/migrations/202603090001_core_schema.sql`
 - Realtime publication for account data tables: `supabase/migrations/202603090002_realtime_publication.sql`
+- Auth bootstrap trigger for profile/settings rows: `supabase/migrations/202603090003_auth_bootstrap.sql`
+- Dashboard layout persistence on account settings: `supabase/migrations/202603120001_dashboard_layout.sql`
+- Budget allocation + social feature foundations: `supabase/migrations/202603120002_budget_social_features.sql`
+- Allocation mode preferences and pay entry history: `supabase/migrations/202603120003_allocation_mode_preferences_and_pay_entries.sql`
+- Username-aware auth bootstrap: `supabase/migrations/202603230001_auth_username_support.sql`
 
 Apply migrations with your standard Supabase workflow (CLI or dashboard SQL editor) in order.
 

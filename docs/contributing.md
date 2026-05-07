@@ -4,6 +4,9 @@
 - `npm run lint`
 - `npm run typecheck`
 - `npm run build`
+- `npm run test`
+
+CI workflow: `.github/workflows/ci.yml` runs the same checks on pushes and pull requests.
 
 ## Rules
 - Respect layer boundaries.

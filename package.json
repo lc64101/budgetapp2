@@ -4,9 +4,11 @@
   "private": true,
   "description": "Refreshed budget app with hybrid sync architecture",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 4001",
+    "dev:4000": "next dev -p 4000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 4001",
+    "start:4000": "next start -p 4000",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
@@ -19,6 +21,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@supabase/ssr": "^0.9.0",
     "@supabase/supabase-js": "^2.98.0",
     "@tanstack/react-query": "^5.90.21",
     "next": "^16.1.6",

@@ -16,6 +16,10 @@ export function useAccountRealtimeInvalidation({
   const queryClient = useQueryClient();
 
   useEffect(() => {
+    if (!userId) {
+      return;
+    }
+
     const supabase = createBrowserSupabaseClient();
     const channel = supabase
       .channel(`account:${userId}`)
